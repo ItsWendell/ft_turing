@@ -1,6 +1,17 @@
 import argparse
 import json
 
+# Define terminal colors
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    ENDC = '\033[0m'
+
 # Basic logic for validating input using python standard library argparse
 parser = argparse.ArgumentParser(add_help=True)
 parser.add_argument('jsonfile', type=argparse.FileType('r'), help='json description of the machine')
@@ -24,7 +35,7 @@ pos = 0
 # Function to print current state of tape
 def print_tape():
     tape_print = tape.copy()
-    tape_print[pos] = '<' + tape_print[pos] + '>'
+    tape_print[pos] = bcolors.UNDERLINE + tape_print[pos] + bcolors.ENDC
     print(f"[{''.join(tape_print)}] ({state}, {tape[pos]})", end='')
 
 # State machine
