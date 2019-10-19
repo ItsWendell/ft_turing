@@ -28,7 +28,8 @@ machineInput = args.input
 print('Running machine description: ' + machine['name'])
 
 # initial machine state values
-tape = list(machineInput);
+tape = list(machineInput)
+tape.append(machine['blank'] * 5)
 state = machine['initial']
 pos = 0
 
