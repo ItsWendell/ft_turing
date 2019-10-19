@@ -40,20 +40,29 @@ def print_tape():
 
 # State machine
 while state not in machine['finals']:
-    print_tape()
-    for condition in machine['transitions'][state]:
-        if str(condition['read']) != str(tape[pos]):
+    transition = False
+    # Finding the correct transition for the state and current tape value 
+    for item in machine['transitions'][state]:
+        if str(item['read']) != str(tape[pos]):
             continue
-        state = condition['to_state']
-        tape[pos] = condition['write']
-        print(f" -> ({state}, {tape[pos]}, {condition['action']})")
-        if condition['action'] == 'RIGHT':
-            pos += 1
-        elif condition['action'] == 'LEFT':
-            pos -= 1
         else:
-            print('Something unexpected happened, this action does not exist')
-            exit()
-        break
+            transition = item
+
+    # Check if condition exists
+    if transition == False:
+        print(f"No transition found for {str(tape[pos])} in {state}")
+        exit()
+
+    print_tape()
+    state = transition['to_state']
+    tape[pos] = transition['write']
+    print(f" -> ({state}, {tape[pos]}, {transition['action']})")
+    if transition['action'] == 'RIGHT':
+        pos += 1
+    elif transition['action'] == 'LEFT':
+        pos -= 1
+    else:
+        print('Something unexpected happened, this action does not exist')
+        exit()
 
 print('\n -- Result: ' + ''.join(tape))
