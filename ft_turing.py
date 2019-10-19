@@ -48,6 +48,7 @@ while state not in machine['finals']:
             continue
         else:
             transition = item
+            break
 
     # Check if condition exists
     if transition == False:
