@@ -1,0 +1,65 @@
+{
+    "name": "0-even",
+    "alphabet": [
+        "0",
+        ".",
+        "y",
+        "n"
+    ],
+    "blank": ".",
+    "states": [
+        "yes",
+        "no",
+        "HALT"
+    ],
+    "initial": "no",
+    "finals": [
+        "HALT"
+    ],
+    "transitions": {
+        "start": [
+            {
+                "read": "0",
+                "to_state": "power",
+                "write": "0",
+                "action": "RIGHT"
+            }
+        ],
+        "power": [
+            {
+                "read": "0",
+                "to_state": "power",
+                "write": "y",
+                "action": "RIGHT"
+            }
+        ],
+        "no": [
+            {
+                "read": "0",
+                "to_state": "no",
+                "write": "n",
+                "action": "RIGHT"
+            },
+            {
+                "read": ".",
+                "to_state": "HALT",
+                "write": ".",
+                "action": "LEFT"
+            }
+        ],
+        "yes": [
+            {
+                "read": "0",
+                "to_state": "no",
+                "write": "y",
+                "action": "RIGHT"
+            },
+            {
+                "read": ".",
+                "to_state": "HALT",
+                "write": ".",
+                "action": "LEFT"
+            }
+        ]
+    }
+}

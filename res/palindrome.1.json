@@ -105,19 +105,13 @@
                 "read": ".",
                 "to_state": "reset",
                 "write": "y",
-                "action": "RIGHT"
+                "action": "LEFT"
             }
         ],
         "check-b": [
             {
-                "read": "a",
-                "to_state": "reset",
-                "write": "n",
-                "action": "LEFT"
-            },
-            {
                 "read": "b",
-                "to_state": "set-y",
+                "to_state": "reset",
                 "write": "y",
                 "action": "LEFT"
             },
@@ -125,7 +119,13 @@
                 "read": ".",
                 "to_state": "reset",
                 "write": "y",
-                "action": "RIGHT"
+                "action": "LEFT"
+            },
+            {
+                "read": "a",
+                "to_state": "reset",
+                "write": "n",
+                "action": "LEFT"
             }
         ],
         "reset": [
@@ -146,49 +146,25 @@
                 "to_state": "start",
                 "write": ".",
                 "action": "RIGHT"
-            },
+            }
+        ],
+        "set-n": [
             {
                 "read": "y",
-                "to_state": "HALT",
-                "write": "y",
+                "to_state": "set-n",
+                "write": "n",
                 "action": "RIGHT"
             },
             {
                 "read": "n",
                 "to_state": "set-n",
                 "write": "n",
-                "action": "RIGHT"
-            }
-        ],
-        "set-n": [
-            {
-                "read": "a",
-                "to_state": "set-n",
-                "write": "a",
-                "action": "RIGHT"
-            },
-            {
-                "read": "b",
-                "to_state": "set-n",
-                "write": "b",
                 "action": "RIGHT"
             },
             {
                 "read": ".",
                 "to_state": "HALT",
-                "write": "n",
-                "action": "RIGHT"
-            },
-            {
-                "read": "y",
-                "to_state": "set-n",
-                "write": "n",
-                "action": "RIGHT"
-            },
-            {
-                "read": "n",
-                "to_state": "set-n",
-                "write": "n",
+                "write": ".",
                 "action": "RIGHT"
             }
         ],
@@ -206,21 +182,9 @@
                 "action": "RIGHT"
             },
             {
-                "read": "a",
-                "to_state": "set-n",
-                "write": "a",
-                "action": "RIGHT"
-            },
-            {
-                "read": "b",
-                "to_state": "set-n",
-                "write": "b",
-                "action": "RIGHT"
-            },
-            {
                 "read": ".",
                 "to_state": "HALT",
-                "write": "y",
+                "write": ".",
                 "action": "RIGHT"
             }
         ],
@@ -247,12 +211,6 @@
                 "read": "n",
                 "to_state": "set-n",
                 "write": "n",
-                "action": "RIGHT"
-            },
-            {
-                "read": ".",
-                "to_state": "HALT",
-                "write": ".",
                 "action": "RIGHT"
             }
         ]

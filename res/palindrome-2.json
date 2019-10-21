@@ -1,0 +1,111 @@
+{
+    "name": "palindrome",
+    "alphabet": [
+        "a",
+        "b",
+        ".",
+        "y",
+        "n"
+    ],
+    "blank": ".",
+    "states": [
+        "start",
+        "start-a",
+        "start-b"
+
+    ],
+    "initial": "start",
+    "finals": [
+        "HALT"
+    ],
+    "transitions": {
+        "start-a": [
+            {
+                "read": ".",
+                "to_state": "check-a",
+                "write": ".",
+                "action": "LEFT"
+            },
+            {
+                "read": "a",
+                "to_state": "start-a",
+                "write": ".",
+                "action": "RIGHT"
+            },
+            {
+                "read": "b",
+                "to_state": "start-a",
+                "write": "b",
+                "action": "RIGHT"
+            }
+        ],
+        "start-b": [
+            {
+                "read": ".",
+                "to_state": "check-b",
+                "write": ".",
+                "action": "LEFT"
+            },
+            {
+                "read": "a",
+                "to_state": "start-b",
+                "write": "a",
+                "action": "RIGHT"
+            },
+            {
+                "read": "b",
+                "to_state": "start-b",
+                "write": ".",
+                "action": "RIGHT"
+            }
+        ],
+        "check-a": [
+            {
+                "read": "a",
+                "to_state": "start-a",
+                "write": "y",
+                "action": "RIGHT"
+            },
+            {
+                "read": "b",
+                "to_state": "start-a",
+                "write": "n",
+                "action": "RIGHT"
+            },
+            {
+                "read": ".",
+                "to_state": "HALT",
+                "write": "y",
+                "action": "LEFT"
+            }
+        ],
+        "check-b": [
+            {
+                "read": "b",
+                "to_state": "start-b",
+                "write": "y",
+                "action": "RIGHT"
+            },
+            {
+                "read": ".",
+                "to_state": "HALT",
+                "write": "y",
+                "action": "LEFT"
+            }
+        ],
+        "start": [
+            {
+                "read": "a",
+                "to_state": "start-a",
+                "write": ".",
+                "action": "RIGHT"
+            },
+            {
+                "read": "b",
+                "to_state": "start-b",
+                "write": ".",
+                "action": "RIGHT"
+            }
+        ]
+    }
+}
