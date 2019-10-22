@@ -1,18 +1,24 @@
 {
-    "name": "0-even",
+    "name": "0-exp-2",
     "alphabet": [
         "0",
         ".",
+        "X",
         "y",
         "n"
     ],
     "blank": ".",
     "states": [
-        "yes",
-        "no",
-        "HALT"
+        "start",
+        "cancel-odds-odd",
+        "cancel-odds-even",
+        "check-odd-end",
+        "check-even-end",
+        "reset",
+        "set-y",
+        "set-n"
     ],
-    "initial": "no",
+    "initial": "start",
     "finals": [
         "HALT"
     ],
@@ -20,24 +26,122 @@
         "start": [
             {
                 "read": "0",
-                "to_state": "power",
+                "to_state": "cancel-odds-odd",
+                "write": ".",
+                "action": "RIGHT"
+            }
+        ],
+        "cancel-odds-odd": [
+            {
+                "read": "0",
+                "to_state": "cancel-odds-even",
+                "write": "X",
+                "action": "RIGHT"
+            },
+            {
+                "read": "X",
+                "to_state": "cancel-odds-odd",
+                "write": "X",
+                "action": "RIGHT"
+            },
+            {
+                "read": ".",
+                "to_state": "check-odd-end",
+                "write": ".",
+                "action": "LEFT"
+            }
+        ],
+        "cancel-odds-even": [
+            {
+                "read": "0",
+                "to_state": "cancel-odds-odd",
                 "write": "0",
                 "action": "RIGHT"
+            },
+            {
+                "read": "X",
+                "to_state": "cancel-odds-even",
+                "write": "X",
+                "action": "RIGHT"
+            },
+            {
+                "read": ".",
+                "to_state": "check-even-end",
+                "write": ".",
+                "action": "LEFT"
             }
         ],
-        "power": [
+        "check-odd-end": [
             {
                 "read": "0",
-                "to_state": "power",
-                "write": "y",
+                "to_state": "set-n",
+                "write": "n",
+                "action": "RIGHT"
+            },
+            {
+                "read": "X",
+                "to_state": "check-odd-end",
+                "write": "X",
+                "action": "LEFT"
+            },
+            {
+                "read": ".",
+                "to_state": "set-y",
+                "write": ".",
                 "action": "RIGHT"
             }
         ],
-        "no": [
+        "check-even-end": [
             {
                 "read": "0",
-                "to_state": "no",
+                "to_state": "set-n",
                 "write": "n",
+                "action": "RIGHT"
+            },
+            {
+                "read": "X",
+                "to_state": "reset",
+                "write": "X",
+                "action": "LEFT"
+            },
+            {
+                "read": ".",
+                "to_state": "set-y",
+                "write": ".",
+                "action": "LEFT"
+            }
+        ],
+        "reset": [
+            {
+                "read": "0",
+                "to_state": "reset",
+                "write": "0",
+                "action": "LEFT"
+            },
+            {
+                "read": "X",
+                "to_state": "reset",
+                "write": "X",
+                "action": "LEFT"
+            },
+            {
+                "read": ".",
+                "to_state": "cancel-odds-odd",
+                "write": ".",
+                "action": "RIGHT"
+            }
+        ],
+        "set-y": [
+            {
+                "read": "X",
+                "to_state": "set-y",
+                "write": "y",
+                "action": "RIGHT"
+            },
+            {
+                "read": "0",
+                "to_state": "set-y",
+                "write": "y",
                 "action": "RIGHT"
             },
             {
@@ -47,11 +151,23 @@
                 "action": "LEFT"
             }
         ],
-        "yes": [
+        "set-n": [
+            {
+                "read": "X",
+                "to_state": "set-n",
+                "write": "n",
+                "action": "RIGHT"
+            },
             {
                 "read": "0",
-                "to_state": "no",
-                "write": "y",
+                "to_state": "set-n",
+                "write": "n",
+                "action": "RIGHT"
+            },
+            {
+                "read": "y",
+                "to_state": "set-n",
+                "write": "n",
                 "action": "RIGHT"
             },
             {
