@@ -13,6 +13,12 @@ def validate_machine_descriptor(machine_descriptor):
         return False
 
     # Basic state validation
-    print(machine_descriptor['transitions'].keys())
+    # print(machine_descriptor['transitions'].keys())
+
+    # TODO: Add empty tape state validation to input
+
+    # TODO: Input chars outside of characters
+
+    # TODO: Check transitions with state
 
     return True

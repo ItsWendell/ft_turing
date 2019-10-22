@@ -1,6 +1,7 @@
 import argparse
 import collections
 import json
+import timeit
 from state_machine import run_state_machine
 from validate import validate_machine_descriptor
 
@@ -19,7 +20,13 @@ def main():
     # TODO: Add validation for the actual input
     validate_machine_descriptor(machine)
 
-    run_state_machine(args.input, machine)
+    def run():
+        run_state_machine(args.input, machine)
+
+    try:
+        run()
+    except:
+        print('Something unexpected went wrong!')
 
 if __name__ == "__main__":
     main()
